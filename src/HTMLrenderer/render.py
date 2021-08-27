@@ -1,7 +1,7 @@
 from IPython.display import IFrame, display, Markdown, Latex, HTML
 
 
-def render_site(URL=None, width="100%", height="600"):
+def render_site(URL=None, width="100%", height="600", source=True):
     """Renders HTML in the jupyter notebook
 
     Args:
@@ -15,6 +15,11 @@ def render_site(URL=None, width="100%", height="600"):
     try:
         if URL is not None:
             display(IFrame(src=URL, width=width, height=height))
+            if source:
+                print("\n")
+                render_URL(URL=URL, Name="Source: click here to open in new tab")
+                print("\n")
+
         else:
             print("pass valid URL!!")
     except Exception as e:
