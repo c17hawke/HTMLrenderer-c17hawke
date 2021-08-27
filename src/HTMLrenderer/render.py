@@ -1,5 +1,6 @@
 from IPython.display import IFrame, display, Markdown, Latex, HTML
 
+
 def render_site(URL=None, width="100%", height="600"):
     """Renders HTML in the jupyter notebook
 
@@ -23,6 +24,7 @@ def render_site(URL=None, width="100%", height="600"):
 def get_id(URL):
     return URL.split('/')[-1]
 
+
 def render_YouTube_video(URL=None, width=780, height=600):
     try:
         if URL is not None:
@@ -43,6 +45,7 @@ def render_YouTube_video(URL=None, width=780, height=600):
     except Exception as e:
         raise e
 
+
 def render_Latex(LATEX=None):
     try:
         if LATEX is not None:
@@ -62,18 +65,20 @@ def render_HTML(html=None):
     except Exception as e:
         raise e
 
+
 def render_URL(URL=None, Name=None):
     try:
         if (URL is not None):
-          if (Name is not None):
-            html = f"""<h3><a href="{URL}" target="_blank">{Name}</a></h3>"""
-          else:
-            html = f"""<h3><a href="{URL}" target="_blank">external link</a></h3>"""
-            render_HTML(html=html)
+            if (Name is not None):
+                html = f"""<h3><a href="{URL}" target="_blank">{Name}</a></h3>"""
+            else:
+                html = f"""<h3><a href="{URL}" target="_blank">external link</a></h3>"""
+                render_HTML(html=html)
         else:
             print("print valid URL!!")
     except Exception as e:
         raise e
+
 
 def render_Markdown(markdown=None):
     try:
