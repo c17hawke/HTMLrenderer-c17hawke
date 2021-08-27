@@ -27,6 +27,8 @@ def render_site(URL=None, width="100%", height="600", source=True):
 
 
 def get_id(URL):
+    if "watch" in URL:
+        return URL.split("=")[-1]
     return URL.split('/')[-1]
 
 
