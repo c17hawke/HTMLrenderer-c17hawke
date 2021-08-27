@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="HTMLrenderer-c17hawke",
+    name="HTMLrenderer",
     version="0.0.1",
     author="c17hawke",
     author_email="sunny.c17hawke@gmail.com",
