@@ -45,7 +45,7 @@ jobs:
       run: |
         pytest -v
     - name: Build package
-      if: github.ref == 'refs/heads/main' && job.status == 'success'
+      # if: github.ref == 'refs/heads/main' && job.status == 'success'
       run: python -m build
     - name: Publish package
       uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29

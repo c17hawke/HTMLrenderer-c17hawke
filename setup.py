@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="HTMLrenderer",
-    version="0.0.8",
+    version="0.0.9",
     author="c17hawke",
     author_email="sunny.c17hawke@gmail.com",
     description="A small package for rendering HTML pages in jupyter notebooks",
