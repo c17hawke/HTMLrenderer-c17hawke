@@ -1,2 +1,5 @@
 ipython
 ipywidgets
+ensure
+
+-e .

@@ -3,3 +3,6 @@ ipywidgets
 pytest
 tox
 mypy
+ensure
+
+-e .
