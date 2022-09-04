@@ -1,7 +1,8 @@
 from IPython.display import IFrame, display, Markdown, Latex, HTML
+from ensure import ensure_annotations
 
-
-def render_site(URL=None, width="100%", height="600", source=True):
+@ensure_annotations
+def render_site(URL: str=None, width: str="100%", height: str="600", source: bool=True):
     """Renders HTML in the jupyter notebook
 
     Args:
@@ -25,14 +26,22 @@ def render_site(URL=None, width="100%", height="600", source=True):
     except Exception as e:
         raise e
 
+@ensure_annotations
+def get_id(URL: str=None) -> str:
+    """get youtube video id
 
-def get_id(URL):
+    Args:
+        URL (str, optional): youtube URL. Defaults to None.
+
+    Returns:
+        str: video id
+    """
     if "watch" in URL:
         return URL.split("=")[-1]
     return URL.split('/')[-1]
 
-
-def render_YouTube_video(URL=None, width=780, height=600):
+@ensure_annotations
+def render_YouTube_video(URL: str=None, width: int=780, height: int=600):
     try:
         if URL is not None:
             vid_ID = get_id(URL)
@@ -52,8 +61,16 @@ def render_YouTube_video(URL=None, width=780, height=600):
     except Exception as e:
         raise e
 
+@ensure_annotations
+def render_Latex(LATEX: str=None):
+    """render latex docs in notebook
 
-def render_Latex(LATEX=None):
+    Args:
+        LATEX (str, optional): LATEX content. Defaults to None.
+
+    Raises:
+        e: Exception if latex code is not valid
+    """
     try:
         if LATEX is not None:
             display(Latex(LATEX))
@@ -62,8 +79,16 @@ def render_Latex(LATEX=None):
     except Exception as e:
         raise e
 
+@ensure_annotations
+def render_HTML(html: str=None):
+    """render HTML strings
 
-def render_HTML(html=None):
+    Args:
+        html (str, optional): HTML like strings. Defaults to None.
+
+    Raises:
+        e: raise exception is HTML input is not valid
+    """
     try:
         if html is not None:
             display(HTML(html))
@@ -72,8 +97,16 @@ def render_HTML(html=None):
     except Exception as e:
         raise e
 
+@ensure_annotations
+def render_URL(URL: str=None, Name: str=None):
+    """render URL in notebook
 
-def render_URL(URL=None, Name=None):
+    Args:
+        html (str, optional): URL in string format. Defaults to None.
+
+    Raises:
+        e: raise exception if URL input is not valid
+    """
     try:
         if (URL is not None):
             if (Name is not None):
@@ -86,8 +119,16 @@ def render_URL(URL=None, Name=None):
     except Exception as e:
         raise e
 
+@ensure_annotations
+def render_Markdown(markdown: str=None):
+    """render markdown like strings
 
-def render_Markdown(markdown=None):
+    Args:
+        markdown (str, optional): markdown as strings. Defaults to None.
+
+    Raises:
+        e: if not a valid markdown syntax
+    """
     try:
         if markdown is not None:
             display(Markdown(markdown))
