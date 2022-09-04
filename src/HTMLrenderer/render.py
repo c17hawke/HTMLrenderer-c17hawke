@@ -22,7 +22,7 @@ class InvalidURLException(Exception):
 
 
 @ensure_annotations
-def render_site(URL: str=None, width: str="100%", height: str="600", source: bool=True):
+def render_site(URL: str=None, width: str="100%", height: str="600", source: bool=True) -> str:
     """Renders HTML in the jupyter notebook
 
     Args:
@@ -37,15 +37,13 @@ def render_site(URL: str=None, width: str="100%", height: str="600", source: boo
         if is_valid(URL):
             response = IFrame(src=URL, width=width, height=height)
             display(response)
+            if source:
+                print("\n")
+                render_URL(URL=URL, Name="Source: click here to open in new tab")
+                print("\n")
+            return "success"
         else:
             raise InvalidURLException
-        if source:
-            print("\n")
-            render_URL(URL=URL, Name="Source: click here to open in new tab")
-            print("\n")
-            
-        else:
-            raise InvalidURLException("URL is None. Enter a valid URL")
     except Exception as e:
         raise e
 
