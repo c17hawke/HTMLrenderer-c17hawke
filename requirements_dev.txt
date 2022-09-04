@@ -1,4 +1,5 @@
 ipython
-ipywidgetspytest
+ipywidgets
+pytest
 tox
 mypy
