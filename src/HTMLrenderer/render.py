@@ -1,5 +1,25 @@
+import IPython
 from IPython.display import IFrame, display, Markdown, Latex, HTML
 from ensure import ensure_annotations
+import urllib.request
+
+min_attributes = ('scheme', 'netloc')
+
+@ensure_annotations
+def is_valid(URL: str) -> bool:
+    try:
+        response_status = urllib.request.urlopen(URL).getcode()
+        print(f"response_status: {response_status} OK")
+        assert response_status == 200
+        return True
+    except Exception as e:
+        return False
+
+class InvalidURLException(Exception):
+    def __init__(self, message: str="URL is not valid"):
+        self.message = message
+        super().__init__(self.message)
+
 
 @ensure_annotations
 def render_site(URL: str=None, width: str="100%", height: str="600", source: bool=True):
@@ -14,15 +34,18 @@ def render_site(URL: str=None, width: str="100%", height: str="600", source: boo
         None
     """
     try:
-        if URL is not None:
-            display(IFrame(src=URL, width=width, height=height))
-            if source:
-                print("\n")
-                render_URL(URL=URL, Name="Source: click here to open in new tab")
-                print("\n")
-
+        if is_valid(URL):
+            response = IFrame(src=URL, width=width, height=height)
+            display(response)
         else:
-            print("pass valid URL!!")
+            raise InvalidURLException
+        if source:
+            print("\n")
+            render_URL(URL=URL, Name="Source: click here to open in new tab")
+            print("\n")
+            
+        else:
+            raise InvalidURLException("URL is None. Enter a valid URL")
     except Exception as e:
         raise e
 
