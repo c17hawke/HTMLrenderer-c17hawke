@@ -2,6 +2,7 @@ import IPython
 from IPython.display import IFrame, display, Markdown, Latex, HTML
 from ensure import ensure_annotations
 import urllib.request
+from HTMLrenderer.custom_exception import InvalidURLException
 
 min_attributes = ('scheme', 'netloc')
 
@@ -14,11 +15,6 @@ def is_valid(URL: str) -> bool:
         return True
     except Exception as e:
         return False
-
-class InvalidURLException(Exception):
-    def __init__(self, message: str="URL is not valid"):
-        self.message = message
-        super().__init__(self.message)
 
 
 @ensure_annotations
