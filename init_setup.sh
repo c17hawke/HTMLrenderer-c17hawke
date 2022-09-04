@@ -5,7 +5,7 @@ conda create --prefix ./env python=${_VERSION_} -y
 echo [$(date)]: "activate environment"
 source activate ./env
 echo [$(date)]: "install requirements"
-pip install -r requirements.txt
+pip install -r requirements_dev.txt
 echo [$(date)]: "END"
 
 # to remove everything -
