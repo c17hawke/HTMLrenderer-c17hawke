@@ -42,6 +42,15 @@ def get_id(URL: str=None) -> str:
 
 @ensure_annotations
 def render_YouTube_video(URL: str=None, width: int=780, height: int=600):
+    """render Youtube videos in notebook
+
+    Args:
+        URL (str, optional): Youtube video links. Defaults to None.
+        width (int, optional): width of the Youtube video to render. Defaults to 780.
+        height (int, optional): height of the Youtube video to render. Defaults to 600.
+    Raises:
+        e: Exception if youtube link is not valid
+    """
     try:
         if URL is not None:
             vid_ID = get_id(URL)
