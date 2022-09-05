@@ -1,8 +1,10 @@
+from logging import warning
 from IPython.display import IFrame, display, Markdown, Latex, HTML
 from ensure import ensure_annotations
 import urllib.request
 from HTMLrenderer.custom_exception import InvalidURLException
 from HTMLrenderer.logger import logger
+import warnings
 
 @ensure_annotations
 def is_valid(URL: str) -> bool:
@@ -96,6 +98,8 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
     Raises:
         e: Exception if youtube link is not valid
     """
+    logger.warning('use Class render. This method will be deprecated in next release')
+    warnings.warn('use Class render. This method will be deprecated in next release')
     try:
         any_error = error_playing_video(URL)
         if any_error:
@@ -135,13 +139,15 @@ def render_Latex(LATEX: str = None):
     Raises:
         e: Exception if latex code is not valid
     """
-    try:
-        if LATEX is not None:
-            display(Latex(LATEX))
-        else:
-            print("pass valid LATEX syntax!!")
-    except Exception as e:
-        raise e
+    warnings.warn("render_Latex is dropped")
+    # try:
+    #     if LATEX is not None:
+    #         display(Latex(LATEX))
+    #         print("[Hint: if not render properly, please try using raw string]")
+    #     else:
+    #         print("pass valid LATEX syntax!!")
+    # except Exception as e:
+    #     raise e
 
 
 @ensure_annotations
