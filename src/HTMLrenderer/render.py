@@ -1,5 +1,4 @@
-from logging import warning
-from IPython.display import IFrame, display, Markdown, Latex, HTML
+from IPython.display import IFrame, display, HTML
 from ensure import ensure_annotations
 import urllib.request
 from HTMLrenderer.custom_exception import InvalidURLException
