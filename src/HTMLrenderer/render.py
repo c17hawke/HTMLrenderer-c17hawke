@@ -1,10 +1,8 @@
-import IPython
 from IPython.display import IFrame, display, Markdown, Latex, HTML
 from ensure import ensure_annotations
 import urllib.request
 from HTMLrenderer.custom_exception import InvalidURLException
 
-min_attributes = ('scheme', 'netloc')
 
 @ensure_annotations
 def is_valid(URL: str) -> bool:
@@ -18,7 +16,9 @@ def is_valid(URL: str) -> bool:
 
 
 @ensure_annotations
-def render_site(URL: str=None, width: str="100%", height: str="600", source: bool=True) -> str:
+def render_site(
+    URL: str = None, width: str = "100%", height: str = "600", source: bool = True
+) -> str:
     """Renders HTML in the jupyter notebook
 
     Args:
@@ -43,8 +43,9 @@ def render_site(URL: str=None, width: str="100%", height: str="600", source: boo
     except Exception as e:
         raise e
 
+
 @ensure_annotations
-def get_id(URL: str=None) -> str:
+def get_id(URL: str = None) -> str:
     """get youtube video id
 
     Args:
@@ -55,10 +56,11 @@ def get_id(URL: str=None) -> str:
     """
     if "watch" in URL:
         return URL.split("=")[-1]
-    return URL.split('/')[-1]
+    return URL.split("/")[-1]
+
 
 @ensure_annotations
-def render_YouTube_video(URL: str=None, width: int=780, height: int=600):
+def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
     """render Youtube videos in notebook
 
     Args:
@@ -87,8 +89,9 @@ def render_YouTube_video(URL: str=None, width: int=780, height: int=600):
     except Exception as e:
         raise e
 
+
 @ensure_annotations
-def render_Latex(LATEX: str=None):
+def render_Latex(LATEX: str = None):
     """render latex docs in notebook
 
     Args:
@@ -105,8 +108,9 @@ def render_Latex(LATEX: str=None):
     except Exception as e:
         raise e
 
+
 @ensure_annotations
-def render_HTML(html: str=None):
+def render_HTML(html: str = None):
     """render HTML strings
 
     Args:
@@ -123,8 +127,9 @@ def render_HTML(html: str=None):
     except Exception as e:
         raise e
 
+
 @ensure_annotations
-def render_URL(URL: str=None, Name: str=None):
+def render_URL(URL: str = None, Name: str = None):
     """render URL in notebook
 
     Args:
@@ -134,19 +139,20 @@ def render_URL(URL: str=None, Name: str=None):
         e: raise exception if URL input is not valid
     """
     try:
-        if (URL is not None):
-            if (Name is not None):
+        if URL is not None:
+            if Name is not None:
                 html = f"""<h3><a href="{URL}" target="_blank">{Name}</a></h3>"""
             else:
                 html = f"""<h3><a href="{URL}" target="_blank">external link</a></h3>"""
-                render_HTML(html=html)
+                return render_HTML(html=html)
         else:
             print("print valid URL!!")
     except Exception as e:
         raise e
 
+
 @ensure_annotations
-def render_Markdown(markdown: str=None):
+def render_Markdown(markdown: str = None):
     """render markdown like strings
 
     Args:
