@@ -1,4 +1,5 @@
 [![Upload Python Package](https://github.com/c17hawke/HTMLrenderer-c17hawke/actions/workflows/pypi-publish.yml/badge.svg)](https://github.com/c17hawke/HTMLrenderer-c17hawke/actions/workflows/pypi-publish.yml)
+[![Python application](https://github.com/c17hawke/HTMLrenderer-c17hawke/actions/workflows/ci.yml/badge.svg)](https://github.com/c17hawke/HTMLrenderer-c17hawke/actions/workflows/ci.yml)
 
 # HTMLrenderer-c17hawke
 A small package for rendering HTML pages in jupyter notebooks
