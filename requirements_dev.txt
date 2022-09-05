@@ -4,5 +4,5 @@ pytest
 tox
 mypy
 ensure
-
+black
 -e .
