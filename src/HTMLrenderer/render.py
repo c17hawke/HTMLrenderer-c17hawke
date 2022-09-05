@@ -1,4 +1,4 @@
-from IPython.display import IFrame, display, HTML
+from IPython import display
 from ensure import ensure_annotations
 import urllib.request
 from HTMLrenderer.custom_exception import InvalidURLException
@@ -30,8 +30,8 @@ def render_site(URL: str = None, width: str = "100%", height: str = "600") -> st
     """
     try:
         if is_valid(URL):
-            response = IFrame(src=URL, width=width, height=height)
-            display(response)
+            response = display.IFrame(src=URL, width=width, height=height)
+            display.display(response)
             return "success"
         else:
             raise InvalidURLException
@@ -40,7 +40,7 @@ def render_site(URL: str = None, width: str = "100%", height: str = "600") -> st
 
 
 @ensure_annotations
-def get_id_and_start_time(URL: str = None) -> tuple:
+def get_id_and_start_time(URL: str) -> tuple:
     """get youtube video id
 
     Args:
@@ -84,7 +84,7 @@ def get_id_and_start_time(URL: str = None) -> tuple:
 
 @ensure_annotations
 def error_playing_video(
-    URL: str = None,
+    URL: str,
     pattern: str = '"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"',
 ) -> bool:
     request = urllib.request.urlopen(URL)
@@ -92,7 +92,7 @@ def error_playing_video(
 
 
 @ensure_annotations
-def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
+def render_YouTube_video(URL: str, width: int = 780, height: int = 600):
     """render Youtube videos in notebook
 
     Args:
@@ -124,7 +124,7 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
                 encrypted-media; gyroscope;
                 picture-in-picture" allowfullscreen>
                 </iframe>"""
-                display(HTML(iframe))
+                display.display(display.HTML(iframe))
                 return "success"
     except Exception as e:
         raise e
