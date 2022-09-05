@@ -148,6 +148,7 @@ def render_Latex(LATEX: str = None):
     #         print("pass valid LATEX syntax!!")
     # except Exception as e:
     #     raise e
+    return
 
 
 @ensure_annotations
@@ -160,13 +161,15 @@ def render_HTML(html: str = None):
     Raises:
         e: raise exception is HTML input is not valid
     """
-    try:
-        if html is not None:
-            display(HTML(html))
-        else:
-            print("pass valid HTML syntax!!")
-    except Exception as e:
-        raise e
+    warnings.warn("render_HTML is dropped")
+    # try:
+    #     if html is not None:
+    #         display(HTML(html))
+    #     else:
+    #         print("pass valid HTML syntax!!")
+    # except Exception as e:
+    #     raise e
+    return
 
 
 @ensure_annotations
@@ -179,18 +182,19 @@ def render_URL(URL: str = None, Name: str = None):
     Raises:
         e: raise exception if URL input is not valid
     """
-    try:
-        if URL is not None:
-            if Name is not None:
-                html = f"""<h3><a href="{URL}" target="_blank">{Name}</a></h3>"""
-            else:
-                html = f"""<h3><a href="{URL}" target="_blank">external link</a></h3>"""
-                return render_HTML(html=html)
-        else:
-            print("print valid URL!!")
-    except Exception as e:
-        raise e
-
+    warnings.warn("render URL is dropped")
+    # try:
+    #     if URL is not None:
+    #         if Name is not None:
+    #             html = f"""<h3><a href="{URL}" target="_blank">{Name}</a></h3>"""
+    #         else:
+    #             html = f"""<h3><a href="{URL}" target="_blank">external link</a></h3>"""
+    #             return render_HTML(html=html)
+    #     else:
+    #         print("print valid URL!!")
+    # except Exception as e:
+    #     raise e
+    return 
 
 @ensure_annotations
 def render_Markdown(markdown: str = None):
@@ -202,10 +206,12 @@ def render_Markdown(markdown: str = None):
     Raises:
         e: if not a valid markdown syntax
     """
-    try:
-        if markdown is not None:
-            display(Markdown(markdown))
-        else:
-            print("pass valid markdown syntax!!")
-    except Exception as e:
-        raise e
+    warnings.warn("render_Markdown is dropped")
+    # try:
+    #     if markdown is not None:
+    #         display(Markdown(markdown))
+    #     else:
+    #         print("pass valid markdown syntax!!")
+    # except Exception as e:
+    #     raise e
+    return 
