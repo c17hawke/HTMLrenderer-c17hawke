@@ -19,9 +19,11 @@ URL_test_bad_data = [
     ("https://www.youtube.com/watch?v==roO5VGxOw2s&t=22s"),
 ]
 
+
 @pytest.mark.parametrize("URL, response", URL_test_success_data)
 def test_render_YT_success(URL, response):
     assert render_YouTube_video(URL) == response
+
 
 @pytest.mark.parametrize("URL", URL_test_bad_data)
 def test_render_YT_failed(URL):

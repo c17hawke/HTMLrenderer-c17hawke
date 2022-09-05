@@ -17,9 +17,11 @@ URL_test_bad_data = [
     ("pytorch.org"),
 ]
 
+
 @pytest.mark.parametrize("URL, response", URL_test_success_data)
 def test_render_site_success(URL, response):
     assert render_site(URL) == response
+
 
 @pytest.mark.parametrize("URL", URL_test_bad_data)
 def test_render_site_failed(URL):

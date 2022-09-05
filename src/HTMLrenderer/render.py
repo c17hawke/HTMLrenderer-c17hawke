@@ -3,7 +3,6 @@ from ensure import ensure_annotations
 import urllib.request
 from HTMLrenderer.custom_exception import InvalidURLException
 from HTMLrenderer.logger import logger
-import warnings
 
 
 @ensure_annotations
@@ -13,7 +12,7 @@ def is_valid(URL: str) -> bool:
         print(f"response_status: {response_status} OK")
         assert response_status == 200
         return True
-    except Exception as e:
+    except:
         return False
 
 
@@ -103,8 +102,6 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
     Raises:
         e: Exception if youtube link is not valid
     """
-    logger.warning("use Class render. This method will be deprecated in next release")
-    warnings.warn("use Class render. This method will be deprecated in next release")
     try:
         any_error = error_playing_video(URL)
         if any_error:
@@ -118,17 +115,16 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
             if not any_error:
                 logger.info(f"embed_URL: {embed_URL}")
                 iframe = f"""<iframe 
-                width="{width}" height="{height}" 
-                src="{embed_URL}" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; 
-                autoplay; clipboard-write; 
-                encrypted-media; gyroscope; 
+                width="{width}" height="{height}"
+                src="{embed_URL}"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer;
+                autoplay; clipboard-write;
+                encrypted-media; gyroscope;
                 picture-in-picture" allowfullscreen>
                 </iframe>"""
                 display(HTML(iframe))
                 return "success"
-            # return IFrame(iframe, width=width, height=height)
     except Exception as e:
         raise e
