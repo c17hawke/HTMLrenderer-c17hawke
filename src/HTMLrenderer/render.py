@@ -12,7 +12,7 @@ def is_valid(URL: str) -> bool:
         print(f"response_status: {response_status} OK")
         assert response_status == 200
         return True
-    except:
+    except Exception:
         return False
 
 
@@ -114,7 +114,7 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
             any_error = error_playing_video(embed_URL)
             if not any_error:
                 logger.info(f"embed_URL: {embed_URL}")
-                iframe = f"""<iframe 
+                iframe = f"""<iframe
                 width="{width}" height="{height}"
                 src="{embed_URL}"
                 title="YouTube video player"
