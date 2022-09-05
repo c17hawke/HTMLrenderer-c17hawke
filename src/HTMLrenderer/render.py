@@ -20,8 +20,7 @@ def is_valid(URL: str) -> bool:
 
 @ensure_annotations
 def render_site(
-    URL: str = None, width: str = "100%", height: str = "600", source: bool = True
-) -> str:
+    URL: str = None, width: str = "100%", height: str = "600") -> str:
     """Renders HTML in the jupyter notebook
 
     Args:
@@ -36,10 +35,6 @@ def render_site(
         if is_valid(URL):
             response = IFrame(src=URL, width=width, height=height)
             display(response)
-            if source:
-                print("\n")
-                render_URL(URL=URL, Name="Source: click here to open in new tab")
-                print("\n")
             return "success"
         else:
             raise InvalidURLException
