@@ -17,7 +17,7 @@ def is_valid(URL: str) -> bool:
 
 
 @ensure_annotations
-def render_site(URL: str = None, width: str = "100%", height: str = "600") -> str:
+def render_site(URL: str, width: str = "100%", height: str = "600") -> str:
     """Renders HTML in the jupyter notebook
 
     Args:

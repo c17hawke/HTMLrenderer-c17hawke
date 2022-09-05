@@ -31,3 +31,4 @@ venv*/
 env/*
 logs/running_logs.log
 research/logs/running_logs.log
+.mypy_cache
