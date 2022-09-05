@@ -19,8 +19,7 @@ def is_valid(URL: str) -> bool:
 
 
 @ensure_annotations
-def render_site(
-    URL: str = None, width: str = "100%", height: str = "600") -> str:
+def render_site(URL: str = None, width: str = "100%", height: str = "600") -> str:
     """Renders HTML in the jupyter notebook
 
     Args:
@@ -134,92 +133,3 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
             # return IFrame(iframe, width=width, height=height)
     except Exception as e:
         raise e
-
-
-@ensure_annotations
-def render_Latex(LATEX: str = None):
-    """render latex docs in notebook
-
-    Args:
-        LATEX (str, optional): LATEX content. Defaults to None.
-
-    Raises:
-        e: Exception if latex code is not valid
-    """
-    warnings.warn("render_Latex is dropped")
-    # try:
-    #     if LATEX is not None:
-    #         display(Latex(LATEX))
-    #         print("[Hint: if not render properly, please try using raw string]")
-    #     else:
-    #         print("pass valid LATEX syntax!!")
-    # except Exception as e:
-    #     raise e
-    return
-
-
-@ensure_annotations
-def render_HTML(html: str = None):
-    """render HTML strings
-
-    Args:
-        html (str, optional): HTML like strings. Defaults to None.
-
-    Raises:
-        e: raise exception is HTML input is not valid
-    """
-    warnings.warn("render_HTML is dropped")
-    # try:
-    #     if html is not None:
-    #         display(HTML(html))
-    #     else:
-    #         print("pass valid HTML syntax!!")
-    # except Exception as e:
-    #     raise e
-    return
-
-
-@ensure_annotations
-def render_URL(URL: str = None, Name: str = None):
-    """render URL in notebook
-
-    Args:
-        html (str, optional): URL in string format. Defaults to None.
-
-    Raises:
-        e: raise exception if URL input is not valid
-    """
-    warnings.warn("render URL is dropped")
-    # try:
-    #     if URL is not None:
-    #         if Name is not None:
-    #             html = f"""<h3><a href="{URL}" target="_blank">{Name}</a></h3>"""
-    #         else:
-    #             html = f"""<h3><a href="{URL}" target="_blank">external link</a></h3>"""
-    #             return render_HTML(html=html)
-    #     else:
-    #         print("print valid URL!!")
-    # except Exception as e:
-    #     raise e
-    return
-
-
-@ensure_annotations
-def render_Markdown(markdown: str = None):
-    """render markdown like strings
-
-    Args:
-        markdown (str, optional): markdown as strings. Defaults to None.
-
-    Raises:
-        e: if not a valid markdown syntax
-    """
-    warnings.warn("render_Markdown is dropped")
-    # try:
-    #     if markdown is not None:
-    #         display(Markdown(markdown))
-    #     else:
-    #         print("pass valid markdown syntax!!")
-    # except Exception as e:
-    #     raise e
-    return
