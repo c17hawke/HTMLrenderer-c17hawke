@@ -6,6 +6,7 @@ from HTMLrenderer.custom_exception import InvalidURLException
 from HTMLrenderer.logger import logger
 import warnings
 
+
 @ensure_annotations
 def is_valid(URL: str) -> bool:
     try:
@@ -56,33 +57,44 @@ def get_id_and_start_time(URL: str = None) -> tuple:
     Returns:
         str: video id
     """
+
     def _verify_vid_id_len(vid_id, __expected_vid_id_len=11):
         len_of_vid_id = len(vid_id)
         if len_of_vid_id != __expected_vid_id_len:
-            raise InvalidURLException(f"Invalid video id with length: {len_of_vid_id}, expected {__expected_vid_id_len}")
+            raise InvalidURLException(
+                f"Invalid video id with length: {len_of_vid_id}, expected {__expected_vid_id_len}"
+            )
 
     logger.info(f"input URL: {URL}")
     split_val = URL.split("=")
     if "watch" in URL:
         if "&t" in URL:
-            vid_id, time = split_val[-2][:-2],split_val[-1][:-1]
+            vid_id, time = split_val[-2][:-2], split_val[-1][:-1]
             _verify_vid_id_len(vid_id)
-            logger.info(f"vid id: {vid_id}, and starts at: {time}, len of video id: {len(vid_id)}")
+            logger.info(
+                f"vid id: {vid_id}, and starts at: {time}, len of video id: {len(vid_id)}"
+            )
             return vid_id, time
         else:
             vid_id, time = split_val[-1], "0"
             _verify_vid_id_len(vid_id)
-            logger.info(f"vid id: {vid_id}, and starts at: {time}, len of video id: {len(vid_id)}")
+            logger.info(
+                f"vid id: {vid_id}, and starts at: {time}, len of video id: {len(vid_id)}"
+            )
             return vid_id, time
     vid_id, time = URL.split("/")[-1], "0"
     _verify_vid_id_len(vid_id)
-    logger.info(f"vid id: {vid_id}, and starts at: {time}, len of video id: {len(vid_id)}")
+    logger.info(
+        f"vid id: {vid_id}, and starts at: {time}, len of video id: {len(vid_id)}"
+    )
     return vid_id, time
 
 
-
 @ensure_annotations
-def error_playing_video(URL: str = None, pattern: str='"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"') -> bool:
+def error_playing_video(
+    URL: str = None,
+    pattern: str = '"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"',
+) -> bool:
     request = urllib.request.urlopen(URL)
     return pattern in str(request.read())
 
@@ -98,8 +110,8 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
     Raises:
         e: Exception if youtube link is not valid
     """
-    logger.warning('use Class render. This method will be deprecated in next release')
-    warnings.warn('use Class render. This method will be deprecated in next release')
+    logger.warning("use Class render. This method will be deprecated in next release")
+    warnings.warn("use Class render. This method will be deprecated in next release")
     try:
         any_error = error_playing_video(URL)
         if any_error:
@@ -194,7 +206,8 @@ def render_URL(URL: str = None, Name: str = None):
     #         print("print valid URL!!")
     # except Exception as e:
     #     raise e
-    return 
+    return
+
 
 @ensure_annotations
 def render_Markdown(markdown: str = None):
@@ -214,4 +227,4 @@ def render_Markdown(markdown: str = None):
     #         print("pass valid markdown syntax!!")
     # except Exception as e:
     #     raise e
-    return 
+    return
