@@ -2,7 +2,7 @@ from IPython.display import IFrame, display, Markdown, Latex, HTML
 from ensure import ensure_annotations
 import urllib.request
 from HTMLrenderer.custom_exception import InvalidURLException
-
+from HTMLrenderer.logger import logger
 
 @ensure_annotations
 def is_valid(URL: str) -> bool:
@@ -45,7 +45,7 @@ def render_site(
 
 
 @ensure_annotations
-def get_id(URL: str = None) -> str:
+def get_id_and_start_time(URL: str = None) -> tuple:
     """get youtube video id
 
     Args:
@@ -54,9 +54,28 @@ def get_id(URL: str = None) -> str:
     Returns:
         str: video id
     """
+    logger.info(f"input URL: {URL}")
+    split_val = URL.split("=")
     if "watch" in URL:
-        return URL.split("=")[-1]
-    return URL.split("/")[-1]
+        if "&t" in URL:
+            
+            vid_id, time = split_val[-2][:-2],split_val[-1][:-1] 
+            logger.info(f"vid id: {vid_id}, and starts at: {time}")
+            return vid_id, time
+        else:
+            vid_id, time = split_val[-1], "0"
+            logger.info(f"vid id: {vid_id}, and starts at: {time}")
+            return vid_id, time
+    vid_id, time = URL.split("/")[-1], "0"
+    logger.info(f"vid id: {vid_id}, and starts at: {time}")
+    return vid_id, time
+
+
+
+@ensure_annotations
+def try_video(URL: str = None, pattern: str='"playabilityStatus":{"status":"ERROR","reason":"Video unavailable"') -> bool:
+    request = urllib.request.urlopen(URL)
+    return pattern in str(request.read())
 
 
 @ensure_annotations
@@ -71,11 +90,18 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
         e: Exception if youtube link is not valid
     """
     try:
-        if URL is not None:
-            vid_ID = get_id(URL)
+        URL_not_accessible = try_video(URL)
+        if URL_not_accessible:
+            raise InvalidURLException("URL is not accessible")
+        if URL is None:
+            raise InvalidURLException("URL is None")
+        else:
+            vid_ID, time = get_id_and_start_time(URL)
+            embed_URL = f"https://www.youtube.com/embed/{vid_ID}?start={time}"
+            logger.info(f"embed_URL: {embed_URL}")
             iframe = f"""<iframe 
             width="{width}" height="{height}" 
-            src="https://www.youtube.com/embed/{vid_ID}" 
+            src="{embed_URL}" 
             title="YouTube video player" 
             frameborder="0" 
             allow="accelerometer; 
@@ -84,8 +110,7 @@ def render_YouTube_video(URL: str = None, width: int = 780, height: int = 600):
             picture-in-picture" allowfullscreen>
             </iframe>"""
             display(HTML(iframe))
-        else:
-            print("pass valid URL!!")
+            # return IFrame(iframe, width=width, height=height)
     except Exception as e:
         raise e
 
