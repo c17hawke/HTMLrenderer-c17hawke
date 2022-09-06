@@ -7,6 +7,14 @@ from HTMLrenderer.logger import logger
 
 @ensure_annotations
 def is_valid(URL: str) -> bool:
+    """Checks existence of a valid URL
+
+    Args:
+        URL (str): input URL
+
+    Returns:
+        bool: boolean existence of the URL
+    """
     try:
         response_status = urllib.request.urlopen(URL).getcode()
         assert response_status == 200
@@ -19,15 +27,19 @@ def is_valid(URL: str) -> bool:
 
 @ensure_annotations
 def render_site(URL: str, width: str = "100%", height: str = "600") -> str:
-    """Renders HTML in the jupyter notebook
+    """renders site in the notebook
 
     Args:
-        URL (str): URL of site to render in jupyter notebook. Defaults to None.
-        width (str, optional): width of the html page to render_site. Defaults to "100%".
-        height (str, optional): height of the html page to render. Defaults to 600.
+        URL (str): input URL
+        width (str, optional): width in percentage. Defaults to "100%".
+        height (str, optional): height in nums. Defaults to "600".
+
+    Raises:
+        InvalidURLException: if URL is not is_valid
+        e: other exceptions
 
     Returns:
-        None
+        str: "success if site rendered"
     """
     try:
         if is_valid(URL):
