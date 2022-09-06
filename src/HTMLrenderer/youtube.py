@@ -62,6 +62,6 @@ def render_YouTube_video(URL: str, width: int = 780, height: int = 600):
             display.display(display.HTML(iframe))
             return "success"
         else:
-            raise InvalidURLException("URL is not valid, Kindly verify") 
+            raise InvalidURLException("URL is not valid, Kindly verify")
     except Exception as e:
         raise e
