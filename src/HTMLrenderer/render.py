@@ -6,40 +6,6 @@ from HTMLrenderer.logger import logger
 
 
 @ensure_annotations
-def is_valid(URL: str) -> bool:
-    try:
-        response_status = urllib.request.urlopen(URL).getcode()
-        print(f"response_status: {response_status} OK")
-        assert response_status == 200
-        return True
-    except Exception:
-        return False
-
-
-@ensure_annotations
-def render_site(URL: str, width: str = "100%", height: str = "600") -> str:
-    """Renders HTML in the jupyter notebook
-
-    Args:
-        URL (str): URL of site to render in jupyter notebook. Defaults to None.
-        width (str, optional): width of the html page to render_site. Defaults to "100%".
-        height (str, optional): height of the html page to render. Defaults to 600.
-
-    Returns:
-        None
-    """
-    try:
-        if is_valid(URL):
-            response = display.IFrame(src=URL, width=width, height=height)
-            display.display(response)
-            return "success"
-        else:
-            raise InvalidURLException
-    except Exception as e:
-        raise e
-
-
-@ensure_annotations
 def get_id_and_start_time(URL: str) -> tuple:
     """get youtube video id
 
@@ -104,27 +70,24 @@ def render_YouTube_video(URL: str, width: int = 780, height: int = 600):
     """
     try:
         any_error = error_playing_video(URL)
-        if any_error:
-            raise InvalidURLException("URL is not accessible")
+        vid_ID, time = get_id_and_start_time(URL)
+        embed_URL = f"https://www.youtube.com/embed/{vid_ID}?start={time}"
+        any_error = error_playing_video(embed_URL)
         if URL is None:
             raise InvalidURLException("URL is None")
-        else:
-            vid_ID, time = get_id_and_start_time(URL)
-            embed_URL = f"https://www.youtube.com/embed/{vid_ID}?start={time}"
-            any_error = error_playing_video(embed_URL)
-            if not any_error:
-                logger.info(f"embed_URL: {embed_URL}")
-                iframe = f"""<iframe
-                width="{width}" height="{height}"
-                src="{embed_URL}"
-                title="YouTube video player"
-                frameborder="0"
-                allow="accelerometer;
-                autoplay; clipboard-write;
-                encrypted-media; gyroscope;
-                picture-in-picture" allowfullscreen>
-                </iframe>"""
-                display.display(display.HTML(iframe))
-                return "success"
+        elif not any_error:
+            logger.info(f"embed_URL: {embed_URL}")
+            iframe = f"""<iframe
+            width="{width}" height="{height}"
+            src="{embed_URL}"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer;
+            autoplay; clipboard-write;
+            encrypted-media; gyroscope;
+            picture-in-picture" allowfullscreen>
+            </iframe>"""
+            display.display(display.HTML(iframe))
+            return "success"
     except Exception as e:
         raise e
