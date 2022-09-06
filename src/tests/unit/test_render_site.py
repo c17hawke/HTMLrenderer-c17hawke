@@ -11,6 +11,7 @@ URL_test_data = [
     ("http/pytorch", False),
     ("http/pytorch", False),
     ("pytorch.org", False),
+    ("http://asyef/", False),
 ]
 
 
