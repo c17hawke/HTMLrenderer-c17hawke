@@ -1,10 +1,10 @@
 from HTMLrenderer.youtube import (
     render_YouTube_video,
-    error_playing_video,
+    get_id_and_start_time,
 )
 from HTMLrenderer.site import (
     is_valid,
     render_site,
 )
 
-_ = render_site, render_YouTube_video, is_valid, error_playing_video
+_ = render_site, render_YouTube_video, is_valid, get_id_and_start_time
