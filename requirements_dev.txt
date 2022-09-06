@@ -7,3 +7,4 @@ flake8==5.0.4
 mypy==0.971
 notebook==6.4.12
 pytest-order==1.0.1
+py-youtube==1.1.7
