@@ -4,9 +4,9 @@ from HTMLrenderer.custom_exception import InvalidURLException
 
 
 URL_id_good_data = [
-    ("https://youtu.be/roO5VGxOw2s", ("roO5VGxOw2s", "0")),
-    ("https://www.youtube.com/watch?v=roO5VGxOw2s", ("roO5VGxOw2s", "0")),
-    ("https://www.youtube.com/watch?v=roO5VGxOw2s&t=42s", ("roO5VGxOw2s", "42")),
+    ("https://youtu.be/roO5VGxOw2s", 0),
+    ("https://www.youtube.com/watch?v=roO5VGxOw2s", 0),
+    ("https://www.youtube.com/watch?v=roO5VGxOw2s&t=42s", 42),
 ]
 
 URL_id_bad_data = [
