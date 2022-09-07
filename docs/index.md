@@ -1,17 +1,15 @@
-# Welcome to MkDocs
+# Welcome to HTML renderer
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+This package is meant to render Youtube tutorial videos and reference site into the Colab or Jupyter notebooks for easy reference in future.
 
-## Commands
+## Getting started
+### Installation
+First let's do an easy pip installation of the library by running the following command -
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
-## Project layout
+    ```bash
+    pip install HTMLrenderer
+    ```
+2. Check the short video for quickstart - 
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PIzS0OB0qNU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
