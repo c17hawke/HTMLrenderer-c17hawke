@@ -16,7 +16,7 @@ class TestRenderSite:
         ("http/pytorch"),
         ("http/pytorch"),
         ("pytorch.org"),
-        ("http://asyef/")
+        ("http://asyef/"),
     ]
 
     @pytest.mark.parametrize("URL, response", URL_test_success_data)

@@ -33,3 +33,4 @@ logs/running_logs.log
 research/logs/running_logs.log
 .mypy_cache
 src/tests/logs/running_logs.log
+tests/logs/running_logs.log
