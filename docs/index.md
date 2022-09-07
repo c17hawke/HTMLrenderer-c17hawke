@@ -4,9 +4,9 @@ This package is meant to render Youtube tutorial videos and reference site into 
 
 ## Getting started
 ### Installation
-First let's do an easy pip installation of the library by running the following command -
 
-
+!!! note="installation"
+    First let's do an easy pip installation of the library by running the following command -
     ```bash
     pip install HTMLrenderer
     ```
